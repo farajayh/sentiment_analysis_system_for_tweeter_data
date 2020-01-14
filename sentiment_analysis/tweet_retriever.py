@@ -7,10 +7,10 @@ Created on Wed Oct 23 03:25:25 2019
 import tweepy
 import csv
 
-consumer_key = '4ofwWy8FeAZCmwL7XGplR0P46'
-consumer_secret = 'GUXotk9O7L13yKg464W8PniUP7u1Pv4653QCrdNo69pPctFEBD'
-access_token = '3290584749-njqKwR1yUrMNgdoLPz4bUCHCmk3ogBX7Y20OGK3'
-access_secret = 'vn5ybt4ymEBxPut7oq23lLHskTgqX6cTl7OE8oyAjENda'
+consumer_key = '' #Enter your consumer key
+consumer_secret = '' #Enter your consumer secret
+access_token = '' #Enter your access token
+access_secret = '' #Enter your access secret
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_secret)
