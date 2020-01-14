@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <title>Home</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='materialize/css/materialize.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/dosis-font.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='iconfont/material-icons.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='slick/slick.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='slick/slick-theme.css')}}">
+  <script src="{{url_for('static', filename='js/jquery-3.2.1.js')}}"></script>
+  <script src="{{url_for('static', filename='materialize/js/materialize.min.js')}}"></script>
+  <script src="{{url_for('static', filename='js/materializescript.js')}}"></script> 
+</head>
+<body class="grey lighten-4">
+
+<header class="navbar-fixed">
+  <nav class="z-depth-3 blue">
+    <div class="nav-wrapper">
+      <div class="container">
+        <div class="hide-on-small-only"><a href="#" class="brand-logo">A Sentiment Analysis System for Product Review</a></div>
+      
+        <a href="" data-activates="mobile-demo" class="button-collapse"><i class="material-icons white-text">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li class="waves-effect waves-light"><a href="{{url_for('home')}}">Home</a></li>
+        </ul>
+    </div>
+    <ul class="side-nav" id="mobile-demo">
+      <li class="waves-effect waves-light"><a href="{{url_for('home')}}">Home</a></li>
+    </ul>
+  </div>
+</nav>
+</header>
+<main>
+  <div class="parallax-container">
+    <div class="parallax"><img src="{{url_for('static', filename='img/background.jpg')}}"></div>
+    <div class="container">
+      <div class="row">
+          <div class="col s12 l6 offset-l3">
+              <div class="card-top-margin card-bottom-margin">
+                  <div class="card">
+                      <div class="card-content">
+                          <div class="center">
+                              <form action="{{url_for('predict')}}" method="POST">
+                                  <input type='text' name='query' placeholder="ENTER KEYWORD HERE" required>
+                                  <button class="btn z-depth-3 blue" type='submit' name='submit'> Submit </button>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+ {% if results %}
+ <div class="center">
+  <h5>Result of the sentiment analysis (Analysis based on {{ output[0] }} different tweets)</h5>
+  <div class="divider blue"></div>
+ </div>
+ <div class="center">
+  <span class="chip"><h6><b>Number of tweets expressing positive sentiments: {{ output[1] }}</b></h6></span>
+  <span class="chip"><h6><b>Number of tweets expressing negative sentiments: {{ output[2] }}</b></h6></span>
+  <span class="chip"><h6><b>Number of tweets expressing neutral sentiments: {{ output[3] }}</b></h6></span>
+  <span class="chip"><h6><b>Number of tweeets irrelevant to the keyword entered: {{ output[4] }}</b></h6></span><br>
+</div>
+ <div class="center">
+  <img src="data:;base64, {{ plots[0] }}" alt="Word cloud" style="width:500px;height:500px;">
+  <img src="data:;base64, {{ plots[1] }}" alt="Bar plot" style="width:500px;height:500px;">
+  <img src="data:;base64, {{ plots[2] }}" alt="Pie chart" style="width:500px;height:500px;">     
+ </div>
+
+  {% endif %}
+</main>    
+
+
+<footer class="page-footer z-depth-3 blue">
+  <div class="container">
+          <div class="center">
+            
+            <h5>Lagos State University </h5>
+          </div>
+         
+      <div class="footer-copyright">
+        <div class="container">
+           <div class="center"><h6>Copyright © 2019 </h6></div>
+        </div>
+      </div>
+   </div>
+ </footer>
+ <style>
+  .capitalize {
+      text-transform: capitalize;
+  }
+
+  .card-top-margin {
+      margin-top: 40%;
+  }
+
+  .card-bottom-margin {
+      margin-bottom: 5%;
+  }
+</style>
+<script>
+  $(document).ready(function(){
+  $('.parallax').parallax();
+});
+</script>
+</body>
+</html>
